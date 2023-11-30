@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      type="text/javascript"
+      src="https://feedback.ajua.com/embed/v1/embed.js"
+      async
+      onload="window.loadWebform()"
+    ></script>
+    <script>
+      window.loadWebform = function () {
+        let container = document.getElementById('embedding');
+        createWebform(container, {
+          joinCode: 'MWAMBATEST',
+        });
+
+        setTimeout(() => {
+          window.postMessage({
+            message: 'script-loaded',
+          });
+        }, 2000);
+      };
+
+      window.addEventListener('message', (event) => {
+        if (event.data.message === 'trigger-webform') {
+          window.openModal();
+        }
+        return;
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+    <div id="embedding"></div>
+  </body>
+</html>
