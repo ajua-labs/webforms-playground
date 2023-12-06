@@ -9,28 +9,29 @@
 
   <body>
     <div id="root"></div>
-
     <script
       type="text/javascript"
       src="https://feedback.ajua.com/embed/v1/embed.js"
       async
       onload="window.loadWebform()"
     ></script>
+
     <script>
-      window.loadWebform = function () {
+      function loadWebform() {
         let container = document.getElementById('embedding');
         createWebform(container, {
           joinCode: 'MWAMBATEST',
         });
+      }
+    </script>
 
-        setTimeout(() => {
+    <script>
+      window.addEventListener('message', (event) => {
+        if (event.data.message === 'Webform is valid') {
           window.postMessage({
             message: 'script-loaded',
           });
-        }, 2000);
-      };
-
-      window.addEventListener('message', (event) => {
+        }
         if (event.data.message === 'trigger-webform') {
           window.openModal();
         }
