@@ -27,7 +27,7 @@
 
     <script>
       window.addEventListener('message', (event) => {
-        if (event.data.message === 'Webform is valid') {
+        if (event.data.message === 'webform loaded' || event.data.message === 'Webform is valid') {
           window.postMessage({
             message: 'script-loaded',
           });
